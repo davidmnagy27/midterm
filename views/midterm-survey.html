@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Midterm Survey</title>
+
+</head>
+<body>
+<h1>Midterm Survey</h1>
+<form method="post" action="#">
+    <label>Name
+        <input type="text" name="name" value="{{ @name }}">
+    </label>
+    <check if="{{ @errors['name'] }}">
+        <span class="err">{{ @errors['name'] }}</span>
+    </check>
+    <br><br>
+
+    <p>Check all the apply:
+        <check if="{{ @errors['opt'] }}">
+            <span class="err">{{ @errors['opt'] }}</span>
+        </check><br>
+
+        <repeat group="{{ @options }}" value="{{ @optionOption }}">
+            <label><input type="checkbox" name="opt[]" value="{{ @optionOption }}"
+                <check if="{{ !empty(@opt) && in_array(@optionOption, @opt) }}">
+                    checked="checked"
+                </check>
+                >{{ @optionOption }}</label><br>
+        </repeat>
+    </p>
+    <input type="submit" value="Submit">
+
+</form>
+
+</body>
+</html>
